@@ -24,6 +24,6 @@ SqlBaseAdmin.exe  show  serverName  serverPassword
 
 **To abort processes (disconnect users) from a database**
 
-SqlBaseAdmin.exe  abort   serverName  serverPassword    databaseName*
+SqlBaseAdmin.exe  abort   serverName  serverPassword    databaseName
 
 ![Screenshot](https://victorscode.files.wordpress.com/2015/03/abortsnapshot1.png "Screen shot")
