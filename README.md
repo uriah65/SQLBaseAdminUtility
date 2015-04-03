@@ -4,7 +4,9 @@ An utility for [Gupta SQLBase 11.7] (http://www.guptatechnologies.com/products/d
 
 Implemented with C# Visual Studio 2015. Compiled for 64 bit version, require sqlwntm.dll  and sql.ini from your installation of SQLBase. [Download executable] (https://github.com/uriah65/SQLBaseAdminUtility/tree/master/SQLBaseAdmin/bin/x64/Release)
 
-**[Detailed description is here ...](https://victorscode.wordpress.com/2015/03/29/sqlbase-11-and-c-admin-utility/)**. Usage:
+**[Detailed description is here ...](https://victorscode.wordpress.com/2015/03/29/sqlbase-11-and-c-admin-utility/)**. 
+
+Usage:
 
 
 
@@ -13,7 +15,7 @@ To abort processes (disconnect users) from a database
 To display database names on the server
 
 
- **SqlBaseAdmin.exe  show    serverName  serverPassword**
+**SqlBaseAdmin.exe  show  serverName  serverPassword**
 
  **SqlBaseAdmin.exe  abort   serverName  serverPassword    databaseName** 
 
