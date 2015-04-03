@@ -18,9 +18,9 @@ namespace SQLBaseAdmin
             }
 
             string command = "" + args[0];
-            string server = args[1];
-            string password = args[2];
-            string database = args[3];
+            string server = "" + args[1];
+            string password = "" + args[2];
+            string database = "" + args[3];
 
             command = command.ToLowerInvariant();
             if (password == ":")
@@ -49,6 +49,8 @@ namespace SQLBaseAdmin
 
             }
 
+
+            Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
 
             return result;
