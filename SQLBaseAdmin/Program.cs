@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SQLBaseAdmin
 {
@@ -39,16 +37,16 @@ namespace SQLBaseAdmin
                     case "abort":
                         result = AbortDatabaseConnections(sqlbase, database, true);
                         break;
+
                     case "show":
                         result = AbortDatabaseConnections(sqlbase, database, false);
                         break;
+
                     case "dbnames":
                         result = GetDatabaseNames(sqlbase);
                         break;
                 }
-
             }
-
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
