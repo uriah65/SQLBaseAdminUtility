@@ -9,15 +9,15 @@ Compiled for 64 bit version, require sqlwntm.dll  and sql.ini from your installa
 
 Usage:
 
-1.to display current processes and cursors on the server
+To display current processes and cursors on the server
 
  **SqlBaseAdmin.exe  show serverName  serverPassword**
 
-2.to abort processes (disconnect users) from a database
+To abort processes (disconnect users) from a database
 
  **SqlBaseAdmin.exe  abort serverName  serverPassword  databaseName** 
 
-3.to display database names on the server
+To display database names on the server
 
  **SqlBaseAdmin.exe  dbnames serverName  password**
 
