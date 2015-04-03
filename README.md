@@ -9,15 +9,12 @@ Implemented with C# Visual Studio 2015. Compiled for 64 bit version, require sql
 
 
 To display current processes and cursors on the server
-
 To abort processes (disconnect users) from a database
-
 To display database names on the server
 
-``
+
  **SqlBaseAdmin.exe  show    serverName  serverPassword**
 
  **SqlBaseAdmin.exe  abort   serverName  serverPassword    databaseName** 
 
  **SqlBaseAdmin.exe  dbnames serverName  serverPassword**
-``
