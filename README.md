@@ -10,13 +10,20 @@ Usage:
 
 
 
-To display current processes and cursors on the server
-To abort processes (disconnect users) from a database
-To display database names on the server
 
 
-**SqlBaseAdmin.exe  show  serverName  serverPassword**
 
- **SqlBaseAdmin.exe  abort   serverName  serverPassword    databaseName** 
 
- **SqlBaseAdmin.exe  dbnames serverName  serverPassword**
+**To display database names on the server**
+
+SqlBaseAdmin.exe  dbnames serverName  serverPassword
+
+**To display current processes and cursors on the server**
+
+SqlBaseAdmin.exe  show  serverName  serverPassword
+
+**To abort processes (disconnect users) from a database**
+
+SqlBaseAdmin.exe  abort   serverName  serverPassword    databaseName*
+
+![Screenshot](https://victorscode.files.wordpress.com/2015/03/abortsnapshot1.png "Screen shot")
