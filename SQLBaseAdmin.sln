@@ -12,7 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Liceses", "_Liceses", "{1BFFE3BD-AFDA-49EF-8479-0142515735F5}"
 	ProjectSection(SolutionItems) = preProject
-		License.txt = License.txt
+		License_CommandLineParserLibrary.txt = License_CommandLineParserLibrary.txt
+		License_SQLBaseAdmin.txt = License_SQLBaseAdmin.txt
 	EndProjectSection
 EndProject
 Global

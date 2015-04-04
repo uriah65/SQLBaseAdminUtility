@@ -12,42 +12,6 @@ namespace SQLBaseAdmin
         private short _handle = 0;
         private string _server;
 
-        #region DLL Import
-
-        /* server information flags */
-        private const int SQLXGSI = 0x8000;     /* extended GSI information flag */
-        private const int SQLGPWD = 0x01;       /* send password		         */
-        private const int SQLGCUR = 0x02;       /* cursor information		     */
-        private const int SQLGDBS = 0x04;       /* database information 	     */
-        private const int SQLGCFG = 0x08;       /* configuration information	 */
-        private const int SQLGSTT = 0x10;       /* statistics			         */
-        private const int SQLGPRC = 0x20;		/* process information		     */
-
-        // connect to SQLBase server
-        [DllImport("sqlwntm.dll")]
-        private static extern short sqlcsv(ref short handle, string serverName, string serverKey);
-
-        // disconnect from to SQLBase server
-        [DllImport("sqlwntm.dll")]
-        private static extern short sqldsv(short handle);
-
-        // getting server information
-        [DllImport("sqlwntm.dll")]
-        private static extern short sqlgsi(short handle, int flags, byte[] buffer, int sizeofbuffer, ref short bufferLength);
-
-        // abort database process
-        [DllImport("sqlwntm.dll")]
-        private static extern short sqlsab(short handle, short processId);
-
-        // perform 'snapshot' backup
-        [DllImport("sqlwntm.dll")]
-        private static extern short sqlbss(short handle, string dbname, int dbnamel, string bkpdir, int bkpdirl, short local, short over);
-
-        // get database names
-        [DllImport("sqlwntm.dll")]
-        private static extern short sqldbn(string server, byte[] buffer, int sizeofbuffer);
-
-        #endregion DLL Import
 
         #region Construct / Dispose
 
@@ -60,7 +24,7 @@ namespace SQLBaseAdmin
                 key = _server;
             }
 
-            short error = sqlcsv(ref _handle, _server, key);
+            short error = NativeMethods.sqlcsv(ref _handle, _server, key);
             if (error != 0)
             {
                 string message = string.Format("Connection to server '{0}' failed. Error code '{1}'.", server, error);
@@ -74,12 +38,15 @@ namespace SQLBaseAdmin
         {
             if (_handle != 0)
             {
-                short error = sqldsv(_handle);
-                if (error != 0)
-                {
-                    string message = string.Format("Server '{0}' disconnect command failed.  Error code '{1}'.", _server, error);
-                    throw new ApplicationException(message);
-                }
+                short temp = _handle;
+                _handle = 0;
+                short error = NativeMethods.sqldsv(temp);
+                
+                //if (error != 0)
+                //{
+                //    string message = string.Format("Server '{0}' disconnect command failed.  Error code '{1}'.", _server, error);
+                //    throw new ApplicationException(message);
+                //}
             }
         }
 
@@ -90,7 +57,7 @@ namespace SQLBaseAdmin
             //short bufferLength = 50;
             byte[] buffer = new byte[BUFFER_SIZE];
             //string buffer = "                                                                                                                                        ";
-            short error = sqldbn(_server, buffer, BUFFER_SIZE);
+            short error = NativeMethods.sqldbn(_server, buffer, BUFFER_SIZE);
 
             List<string> names = Utilities.ExtractStrings(buffer, 0, BUFFER_SIZE);
 
@@ -102,7 +69,7 @@ namespace SQLBaseAdmin
             //dbsdef
             short bufferLength = 0;
             byte[] buffer = new byte[BUFFER_SIZE];
-            short error = sqlgsi(_handle, SQLGDBS, buffer, BUFFER_SIZE - 1, ref bufferLength);
+            short error = NativeMethods.sqlgsi(_handle, NativeMethods.SQLGDBS, buffer, BUFFER_SIZE - 1, ref bufferLength);
 
             // db name start at 58 with step 64
         }
@@ -119,7 +86,7 @@ namespace SQLBaseAdmin
 
             short bufferLength = 0;
             byte[] buffer = new byte[BUFFER_SIZE];
-            short error = sqlgsi(_handle, 0x20 | 0x8000, buffer, BUFFER_SIZE - 1, ref bufferLength);
+            short error = NativeMethods.sqlgsi(_handle, 0x20 | 0x8000, buffer, BUFFER_SIZE - 1, ref bufferLength);
             if (error != 0)
             {
                 string message = string.Format("Server '{0}' query processes operation failed. Error code '{1}'.", _server, error);
@@ -150,7 +117,7 @@ namespace SQLBaseAdmin
             short bufferLength = 0;
             byte[] buffer = new byte[BUFFER_SIZE];
 
-            short error = sqlgsi(_handle, 2, buffer, BUFFER_SIZE - 1, ref bufferLength);
+            short error = NativeMethods.sqlgsi(_handle, 2, buffer, BUFFER_SIZE - 1, ref bufferLength);
             if (error != 0)
             {
                 string message = string.Format("Server '{0}' query cursors operation failed. Error code '{1}'.", _server, error);
@@ -202,7 +169,7 @@ namespace SQLBaseAdmin
                 throw new ApplicationException(message);
             }
 
-            short error = sqlbss(_handle, database, 0, serverPath, 0, 0, 1);
+            short error = NativeMethods.sqlbss(_handle, database, 0, serverPath, 0, 0, 1);
             if (error != 0)
             {
                 string message = string.Format("Backup database '{0}' on server '{1}' failed. Error code '{2}'.", database, _server, error);
@@ -219,7 +186,7 @@ namespace SQLBaseAdmin
 
             foreach (int id in ids)
             {
-                short error = sqlsab(_handle, (short)id);
+                short error = NativeMethods.sqlsab(_handle, (short)id);
                 if (error != 0)
                 {
                     string message = string.Format("Abort process id='{0}' failed. Error code '{1}'.", id, error);
