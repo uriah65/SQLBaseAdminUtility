@@ -11,14 +11,14 @@ Usage:
 
 **To display database names on the server**
 
-SqlBaseAdmin.exe  dbnames serverName  serverPassword
+SqlBaseAdmin.exe -a dbnames -s serverName -p serverPassword
 
 **To display current processes and cursors on the server**
 
-SqlBaseAdmin.exe  show  serverName  serverPassword
+SqlBaseAdmin.exe -a show -s serverName -p serverPassword
 
 **To abort processes (disconnect users) from a database**
 
-SqlBaseAdmin.exe  abort   serverName  serverPassword    databaseName
+SqlBaseAdmin.exe -a abort -s  serverName -p serverPassword -d databaseName
 
 ![Screenshot](https://victorscode.files.wordpress.com/2015/03/abortsnapshot1.png "Screen shot")
