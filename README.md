@@ -2,7 +2,7 @@
 
 An utility for [Gupta SQLBase 11.7] (http://www.guptatechnologies.com/products/data_management/sqlbase/default.aspx) database service that allow to disconnect users from the given database by aborting database processes, as well as perform other actions listed below.
 
-Implemented with C# Visual Studio 2015, compiled for 64 bit version, require sqlwntm.dll and sql.ini from your installation of SQLBase. [Download executable] (https://github.com/uriah65/SQLBaseAdminUtility/tree/master/SQLBaseAdmin/bin/x64/Release)
+Implemented with C# Visual Studio 2015, compiled for 64 bit version, require sqlwntm.dll and sql.ini from your installation of SQLBase. [Download executable] (https://github.com/uriah65/SQLBaseAdminUtility/releases/tag/latest)
 
 Detailed description [https://victorscode.wordpress.com/2015/03/29/sqlbase-11-and-c-admin-utility/](https://victorscode.wordpress.com/2015/03/29/sqlbase-11-and-c-admin-utility/).
 
