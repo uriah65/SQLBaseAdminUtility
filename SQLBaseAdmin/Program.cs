@@ -6,40 +6,59 @@ namespace SQLBaseAdmin
 {
     internal class Program
     {
+        private static Options _options;
+        private static ConsoleColor _originalColor;
+
         private static int Main(string[] args)
         {
-            if (args.Length != 4)
+            _originalColor = Console.ForegroundColor;
+            _options = new Options();
+
+            try
             {
-                Console.WriteLine("Invalid number of arguments " + args.Length + ". Expected 4.");
-                Console.WriteLine("SQLBaseAdmin.exe {abort | show} server { password | : } database ");
-                return -1;
+                if (CommandLine.Parser.Default.ParseArguments(args, _options) == false)
+                {
+                    return Quit(-1);
+                }
+
+                _options.Action = _options.Action.ToLowerInvariant();
+                if (_options.Pasword == ":")
+                {
+                    _options.Pasword = _options.Server;
+                }
+
+                //if (string.IsNullOrWhiteSpace(_options.OutputFile))
+                //{
+                //    _options.OutputFile = _options.InputFile;
+                //}
+
+                return Main_Inner();
             }
-
-            string command = "" + args[0];
-            string server = "" + args[1];
-            string password = "" + args[2];
-            string database = "" + args[3];
-
-            command = command.ToLowerInvariant();
-            if (password == ":")
-            {
-                password = server;
-            }
-
-            int result = 0;
-            using (SQLBase sqlbase = new SQLBase(server, password))
+            catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("{0}Executing '{1}' command for database '{2}' on the server '{3}'.{0}", Environment.NewLine, command, database, server);
+                Console.WriteLine(Utilities.ExceptionMessage(ex));
+                return Quit(-1);
+            }
 
-                switch (command)
+        }
+
+        private static int Main_Inner()
+        {
+            int result = 0;
+            using (SQLBase sqlbase = new SQLBase(_options.Server, _options.Pasword))
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("{0}Executing '{1}' command for database '{2}' on the server '{3}'.{0}", Environment.NewLine, _options.Action, _options.Database, _options.Server);
+
+                switch (_options.Action)
                 {
                     case "abort":
-                        result = AbortDatabaseConnections(sqlbase, database, true);
+                        result = AbortDatabaseConnections(sqlbase, _options.Database, true);
                         break;
 
                     case "show":
-                        result = AbortDatabaseConnections(sqlbase, database, false);
+                        result = AbortDatabaseConnections(sqlbase, _options.Database, false);
                         break;
 
                     case "dbnames":
@@ -48,10 +67,7 @@ namespace SQLBaseAdmin
                 }
             }
 
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey();
-
-            return result;
+            return Quit(0);
         }
 
         private static int AbortDatabaseConnections(SQLBase sqlbase, string database, bool abort)
@@ -124,6 +140,22 @@ namespace SQLBaseAdmin
             }
 
             return 0;
+        }
+
+        private static int Quit(int exitCode)
+        {
+            //if (_options.Verbose)
+            //{
+            //    Console.WriteLine("Press any key to quit.");
+            //    if (_options.NoUser == false)
+            //    {
+            //        Console.ReadKey();
+            //    }
+            //}
+
+            Console.ForegroundColor = _originalColor;
+
+            return exitCode;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace SQLBaseAdmin
 {
-    public sealed class SQLBase : IDisposable
+    internal sealed class SQLBase : IDisposable
     {
         private const int BUFFER_SIZE = 40000;
 

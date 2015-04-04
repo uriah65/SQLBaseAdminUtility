@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SQLBaseAdmin
 {
-    public class T_Cursor
+    internal class T_Cursor
     {
         public int ProcessId { get; set; }
         public string DatabaseName { get; set; }

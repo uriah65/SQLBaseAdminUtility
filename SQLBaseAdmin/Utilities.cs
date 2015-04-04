@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SQLBaseAdmin
 {
-    public static class Utilities
+    internal static class Utilities
     {
         public static string ExtractString(byte[] bytes, int stratPoint)
         {
@@ -34,6 +34,20 @@ namespace SQLBaseAdmin
             }
 
             return result;
+        }
+
+        public static string ExceptionMessage(Exception ex)
+        {
+            string message = "";
+            while (ex != null)
+            {
+                // message += Environment.NewLine;
+                message += "Exception has occurred." + Environment.NewLine;
+                message += "Message:  " + ex.Message + Environment.NewLine;
+                message += "Stack:    " + ex.StackTrace + Environment.NewLine;
+                ex = ex.InnerException;
+            }
+            return message;
         }
     }
 }
