@@ -11,7 +11,7 @@ Usage:
 
 **To display database names on the server**
 
-SqlBaseAdmin.exe -a dbnames -s serverName -p serverPassword
+SqlBaseAdmin.exe -a names -s serverName -p serverPassword
 
 **To display current processes and cursors on the server**
 
@@ -20,5 +20,9 @@ SqlBaseAdmin.exe -a show -s serverName -p serverPassword
 **To abort processes (disconnect users) from a database**
 
 SqlBaseAdmin.exe -a abort -s  serverName -p serverPassword -d databaseName
+
+**To snapshot-backup databse to the directory on the server**
+
+SqlBaseAdmin.exe -a snapshot -s  serverName -p serverPassword -d databaseName -r backuptopath
 
 ![Screenshot](https://victorscode.files.wordpress.com/2015/03/abortsnapshot1.png "Screen shot")
