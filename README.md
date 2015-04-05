@@ -31,7 +31,7 @@ SqlBaseAdmin.exe -a snapshot -s  serverName -p serverPassword -d databaseName -r
 ```
 ___
 This is an example of the abort processes command. Processes highlighted in yellow match database name and are selected to abort. 
-After abort command executed process list doesn't contain these processes any more.
+After abort execution process list doesn't contain these processes.
 
 
 ![Screenshot](https://victorscode.files.wordpress.com/2015/03/abortsnapshot1.png "Screen shot")
