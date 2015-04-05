@@ -28,4 +28,8 @@ SqlBaseAdmin.exe -a abort -s  serverName -p serverPassword -d databaseName
 ```
 SqlBaseAdmin.exe -a snapshot -s  serverName -p serverPassword -d databaseName -r backuptopath
 ```
+
+This is an example of the abort processes command. Processes highlighted in yellow match database name and are selected to abort. 
+
+
 ![Screenshot](https://victorscode.files.wordpress.com/2015/03/abortsnapshot1.png "Screen shot")
