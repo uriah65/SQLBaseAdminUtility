@@ -81,14 +81,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NativeMethods.cs" />
+    <Compile Include="..\SQLBaseAdmin.Lib\NativeMethods.cs">
+      <Link>NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\SQLBaseAdmin.Lib\SQLBase.cs">
+      <Link>SQLBase.cs</Link>
+    </Compile>
+    <Compile Include="..\SQLBaseAdmin.Lib\T_Cursor.cs">
+      <Link>T_Cursor.cs</Link>
+    </Compile>
+    <Compile Include="..\SQLBaseAdmin.Lib\T_Process.cs">
+      <Link>T_Process.cs</Link>
+    </Compile>
+    <Compile Include="..\SQLBaseAdmin.Lib\Utilities.cs">
+      <Link>Utilities.cs</Link>
+    </Compile>
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLBase.cs" />
-    <Compile Include="T_Cursor.cs" />
-    <Compile Include="T_Process.cs" />
-    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

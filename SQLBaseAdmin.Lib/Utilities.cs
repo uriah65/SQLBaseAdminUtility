@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SQLBaseAdmin
 {
-    internal static class Utilities
+    public static class Utilities
     {
         public static string ExtractString(byte[] bytes, int stratPoint)
         {

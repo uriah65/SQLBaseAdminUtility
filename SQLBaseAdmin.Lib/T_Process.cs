@@ -2,7 +2,7 @@
 
 namespace SQLBaseAdmin
 {
-    internal class T_Process
+    public class T_Process
     {
         public int Id { get; set; }
 
