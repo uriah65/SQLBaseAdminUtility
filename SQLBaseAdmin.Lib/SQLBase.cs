@@ -165,14 +165,14 @@ namespace SQLBaseAdmin
         {
             if (serverPath.Contains("ProgramData"))
             {
-                string message = string.Format("Backup path includes invalid folder 'ProgramData'.");
+                string message = string.Format("Backup path includes protected folder 'ProgramData'.");
                 throw new ApplicationException(message);
             }
 
             short error = NativeMethods.sqlbss(_handle, database, 0, serverPath, 0, 0, 1);
             if (error != 0)
             {
-                string message = string.Format("Backup database '{0}' on server '{1}' failed. Error code '{2}'.", database, _server, error);
+                string message = string.Format("Backup database '{0}' on server '{1}' to the folder '{3}' failed. Error code '{2}'.", database, _server, error, serverPath);
                 throw new ApplicationException(message);
             }
         }

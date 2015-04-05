@@ -10,8 +10,8 @@ namespace SQLBaseAdmin
 {
     internal class Options
     {
-        [Option('a', "Action", Required = true, HelpText = "Action to be executed by the utility { dbnames | show | abort }.")]
-        public string Action { get; set; }
+        [Option('a', "Action", Required = true, HelpText = "Action to be executed by the utility { names | show | abort | snapshot }.")]    
+        public Program.ActionsEnum Action { get; set; }
 
         [Option('s', "Server", Required = true, HelpText = "SQLBase server name.")]
         public string Server { get; set; }
@@ -21,6 +21,10 @@ namespace SQLBaseAdmin
 
         [Option('d', "Database", Required = false, HelpText = "Name of the database on SQLBase server.")]
         public string Database { get; set; }
+
+        [Option('r', "Directory", Required = false, HelpText = "Directory on the server, where snapshot backup will be performed.")]
+        public string Directory { get; set; }
+
 
         //[Option('v', "Verbose", DefaultValue = false, HelpText = "Prints all messages to standard output.")]
         //public bool Verbose { get; set; }
@@ -40,9 +44,10 @@ namespace SQLBaseAdmin
             help.AddPostOptionsLine("");
             help.AddPostOptionsLine("EXAMPLES");
             help.AddPostOptionsLine("");
-            help.AddPostOptionsLine("SQLBaseAdmin.exe -a dbnames -s MYSERVERNAME -p :");
+            help.AddPostOptionsLine("SQLBaseAdmin.exe -a names -s MYSERVERNAME -p :");
             help.AddPostOptionsLine("SQLBaseAdmin.exe -a show -s MYSERVERNAME -p : -d: MYDATABASENAME");
             help.AddPostOptionsLine("SQLBaseAdmin.exe -a abort -s MYSERVERNAME -p : -d: MYDATABASENAME");
+            help.AddPostOptionsLine("SQLBaseAdmin.exe -a snapshot -s MYSERVERNAME -p : -d: MYDATABASENAME -r C:\\Temp");
             help.AddPostOptionsLine("");
 
             return help;
