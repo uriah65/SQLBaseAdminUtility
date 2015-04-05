@@ -6,7 +6,8 @@ Implemented with C# Visual Studio 2015, compiled for 64 bit version, require sql
 
 Detailed description [https://victorscode.wordpress.com/2015/03/29/sqlbase-11-and-c-admin-utility/](https://victorscode.wordpress.com/2015/03/29/sqlbase-11-and-c-admin-utility/).
 
-Usage:
+---
+<span style="color: green; font-weight: bold;">Usage:</span>
 
 **To get help**
 ```
