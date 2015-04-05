@@ -8,7 +8,7 @@ Detailed description [https://victorscode.wordpress.com/2015/03/29/sqlbase-11-an
 
 Usage:
 
-**To get help**
+To get help
 ```
 SqlBaseAdmin.exe --help
 ```
